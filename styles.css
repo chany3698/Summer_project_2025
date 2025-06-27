@@ -1,0 +1,116 @@
+/* 기본 설정 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'K League Basic', sans-serif;
+}
+
+body {
+  background-color: white;
+  width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* 사이드바 메뉴 */
+.sidebar {
+  width: 266px;
+  height: 100vh;
+  background: rgba(217, 217, 217, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-top: 200px;
+}
+
+.sidebar .menu {
+  width: 183px;
+  height: 66px;
+  margin: 40px auto;
+  background: rgba(217, 217, 217, 0.88);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 35px;
+  color: black;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+/* 제목 */
+header {
+  position: absolute;
+  left: 534px;
+  top: 17px;
+  font-size: 50px;
+  color: black;
+  font-weight: 500;
+}
+
+/* 프로필 영역 */
+.profile {
+  position: absolute;
+  left: 876px;
+  top: 130px;
+  width: 381px;
+  height: 411px;
+  text-align: center;
+}
+
+.profile img {
+  width: 228px;
+  height: 236px;
+  margin: 22px auto 10px;
+}
+
+.profile .name,
+.profile .verse {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+  margin: 5px 0;
+}
+
+/* 최근 사진 영역 */
+.recent-photo {
+  position: absolute;
+  left: 326px;
+  top: 562px;
+  width: 384px;
+  height: 538px;
+  text-align: center;
+}
+
+.recent-photo img {
+  width: 318px;
+  height: 424px;
+  margin: 57px auto 15px;
+}
+
+.recent-photo p {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+}
+
+/* 자기소개/정보 */
+.about {
+  position: absolute;
+  left: 813px;
+  top: 541px;
+  width: 462px;
+  height: 633px;
+  padding: 40px;
+  font-size: 18px;
+  color: rgba(0, 0, 0, 0.75);
+  font-weight: 500;
+  line-height: 1.8;
+}
+
+.about span:first-child {
+  font-size: 20px;
+  color: rgba(0, 0, 0, 0.8);
+  font-weight: 500;
+}
