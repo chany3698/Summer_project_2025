@@ -1,0 +1,161 @@
+/* 0. 커스텀 폰트 불러오기 */
+/* 0. 커스텀 폰트 불러오기 */
+@font-face {
+  font-family: 'KLeagueBasic';
+  /* ↓ fonts 폴더가 style.css와 동일 디렉터리에 있으므로 */
+  src: url('fonts/KLeagueBasic-Medium.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'KLeagueDynamic';
+  /* ↓ 여기만 경로 수정 */
+  src: url('fonts/KLeagueDynamic-ExtraBold.otf') format('opentype');
+  font-weight: normal; /* 혹은 800 */
+  font-style: normal;
+}
+
+/* 1) 리셋 & 화면 가운데 정렬 */
+* { margin:0; padding:0; box-sizing:border-box; }
+html, body {
+  width:100%; height:100%;
+  overflow:hidden;
+}
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  /* 기본 폰트를 Dynamic으로 변경 */
+  font-family: 'KLeagueDynamic', Arial, sans-serif;
+}
+
+/* 2) 비율 고정 컨테이너 */
+.wrap {
+  position: relative;
+  width: 90vmin;              /* 브라우저 짧은 쪽 기준 90% */
+  aspect-ratio: 9 / 16;       /* 가로:세로 = 9:16 */
+  overflow: hidden;
+}
+
+/* 3) 공통 애니메이션 스타일 */
+.row {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+}
+.track {
+  display: flex;
+  width: 200%;
+  will-change: transform;
+}
+.track span {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding-right: 5vw;
+  /* CHANY 행만 굵게 보여줄 땐 Dynamic */
+  font-family: 'KLeagueDynamic', sans-serif;
+}
+
+/* 4) 각 행 스타일 & 애니메이션 */
+.row1 {
+  top: 15%;
+  font-size: clamp(30px,30vw,300px);
+  line-height: clamp(30px,30vw,330px);
+}
+.row1 .track {
+  animation: scroll-1 var(--row1-speed) linear infinite;
+}
+.row1 .track span {
+  color: transparent;
+  -webkit-text-stroke: 0.4vw #000;
+}
+@keyframes scroll-1 {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.row2 {
+  top: 28%;
+  font-size: clamp(60px,27vw,530px);
+  line-height: clamp(60px,27vw,530px);
+}
+.row2 .track {
+  animation: scroll-2 var(--row2-speed) linear infinite;
+  transform: translateX(var(--row2-offset));
+}
+@keyframes scroll-2 {
+  from { transform: translateX(var(--row2-offset)); }
+  to   { transform: translateX(calc(-50% + var(--row2-offset))); }
+}
+
+.row3 {
+  top: 52.3%;
+  font-size: clamp(40px,13vw,300px);
+  line-height: clamp(40px,13vw,350px);
+}
+.row3 .track {
+  animation: scroll-3 var(--row3-speed) linear infinite;
+}
+.row3 .track span {
+  color: transparent;
+  -webkit-text-stroke: 0.4vw #000;
+}
+@keyframes scroll-3 {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.row4 {
+  top: 65.9%;
+  font-size: clamp(60px,24vw,480px);
+  line-height: clamp(60px,24vw,480px);
+}
+.row4 .track {
+  animation: scroll-4 var(--row4-speed) linear infinite;
+}
+.row4 .track span {
+  color: transparent;
+  -webkit-text-stroke: 0.4vw #000;
+}
+@keyframes scroll-4 {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* 5) 오버레이 (하단 텍스트) */
+.overlay {
+  position: absolute;
+  bottom: 29%;
+  width: 100%;
+  height: clamp(100px,15vh,790px);
+  background: #000;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  z-index: 10;
+}
+.overlay .track {
+  display: flex;
+  width: 200%;
+  animation: scroll-fg var(--fg-speed) linear infinite;
+}
+.overlay .track span {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding-right: 2vw;
+  color: #fff;
+  font-size: clamp(16px,4.5vw,78px);
+  line-height: clamp(16px,4.5vw,88px);
+}
+
+/* 6) 속도 변수 */
+:root {
+  --row1-speed: 30s;
+  --row2-speed: 40s;
+  --row3-speed: 25s;
+  --row4-speed: 15s;
+  --fg-speed:   15s;
+  --row2-offset: -25%;
+}
