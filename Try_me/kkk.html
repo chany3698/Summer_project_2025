@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>메인 페이지</title>
+  <style>
+    :root {
+      /* 배경행별 속도 */
+      --row1-speed: 30s;
+      --row2-speed: 20s;
+      --row3-speed: 25s;
+      --row4-speed: 45s;
+      /* 오버레이 속도 */
+      --fg-speed: 12s;
+      /* CHANY 행 시작 오프셋 */
+      --row2-offset: -25%;
+    }
+
+    /* 1. 공통 리셋 */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { width:100%; height:100%; overflow:hidden; }
+    body { background:#fff; font-family:Arial, sans-serif; }
+    .wrap { position:relative; width:100%; height:100%; }
+
+    /* 2. row & track 구조 */
+    .row {
+      position:absolute; left:0; width:100%; overflow:hidden;
+    }
+    .track {
+      display:flex; width:200%; will-change:transform;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+    .track span {
+      flex:0 0 auto;
+      white-space:nowrap;
+      padding-right:5vw;
+      transform: translate3d(0,0,0);
+    }
+
+    /* 3-1. 1행: ARCHIVE */
+    .row1 {
+      top: clamp(-50px,-15%, -10px);
+      font-size: clamp(80px,22vw,200px);
+      line-height: clamp(80px,22vw,200px);
+    }
+    .row1 .track {
+      animation-name: scroll-1;
+      animation-duration: var(--row1-speed);
+    }
+    .row1 .track span {
+      font-weight:bold;
+      color:transparent;
+      -webkit-text-stroke:0.4vw #000;
+    }
+    @keyframes scroll-1 {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* 3-2. 2행: CHANY */
+    .row2 {
+      top: clamp(8%,13.7%,18%);
+      font-size: clamp(60px,27vw,250px);
+      line-height: clamp(60px,27vw,250px);
+    }
+    .row2 .track {
+      transform: translateX(var(--row2-offset));
+      animation-name: scroll-2;
+      animation-duration: var(--row2-speed);
+    }
+    .row2 .track span {
+      font-weight:900;
+      color:#000;
+    }
+    @keyframes scroll-2 {
+      from { transform: translateX(var(--row2-offset)); }
+      to   { transform: translateX(calc(-50% + var(--row2-offset))); }
+    }
+
+    /* 3-3. 3행: RECORD */
+    .row3 {
+      top: clamp(35%,56.6%,60%);
+      font-size: clamp(40px,13vw,120px);
+      line-height: clamp(40px,13vw,120px);
+    }
+    .row3 .track {
+      animation-name: scroll-3;
+      animation-duration: var(--row3-speed);
+    }
+    .row3 .track span {
+      font-weight:bold;
+      color:transparent;
+      -webkit-text-stroke:0.4vw #000;
+    }
+    @keyframes scroll-3 {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* 3-4. 4행: RECORD N ARCHIVE */
+    .row4 {
+      top: clamp(60%,71%,75%);
+      font-size: clamp(60px,24vw,180px);
+      line-height: clamp(60px,24vw,180px);
+    }
+    .row4 .track {
+      animation-name: scroll-4;
+      animation-duration: var(--row4-speed);
+    }
+    .row4 .track span {
+      font-weight:bold;
+      color:transparent;
+      -webkit-text-stroke:0.4vw #000;
+    }
+    @keyframes scroll-4 {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* 4. 오버레이 */
+    .overlay {
+      position:absolute; left:0; bottom: clamp(8%,12%,16%);
+      width:100%; height: clamp(40px,15vh,120px);
+      background:#000; overflow:hidden;
+      display:flex; align-items:center; z-index:10;
+    }
+    .overlay .track {
+      display:flex; width:200%;
+      animation: scroll-fg var(--fg-speed) linear infinite;
+      will-change:transform;
+    }
+    .overlay .track span {
+      flex:0 0 auto;
+      white-space:nowrap;
+      padding-right:2vw;
+      color:#fff;
+      font-size: clamp(16px,4.5vw,48px);
+      line-height: clamp(16px,4.5vw,48px);
+      transform: translate3d(0,0,0);
+    }
+    @keyframes scroll-fg {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* 5. 모바일 전용 미디어쿼리 (max-width:600px) */
+    @media (max-width: 600px) {
+      :root { --row2-offset: -10%; }
+      .row1 {
+        font-size: 18vw; line-height:18vw;
+        top: -20%;
+      }
+      .row2 {
+        font-size: 20vw; line-height:20vw;
+        top: 10%;
+      }
+      .row3 {
+        font-size: 10vw; line-height:10vw;
+        top: 40%;
+      }
+      .row4 {
+        font-size: 16vw; line-height:16vw;
+        top: 60%;
+      }
+      .overlay .track span {
+        font-size: 3.5vw; line-height:3.5vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <!-- 1행 -->
+    <div class="row row1">
+      <div class="track">
+        <span>ARCHIVE</span><span>ARCHIVE</span>
+      </div>
+    </div>
+    <!-- 2행 -->
+    <div class="row row2">
+      <div class="track">
+        <span>CHANY</span><span>CHANY</span>
+      </div>
+    </div>
+    <!-- 3행 -->
+    <div class="row row3">
+      <div class="track">
+        <span>RECORD</span><span>RECORD</span>
+      </div>
+    </div>
+    <!-- 4행 -->
+    <div class="row row4">
+      <div class="track">
+        <span>RECORD N ARCHIVE</span><span>RECORD N ARCHIVE</span>
+      </div>
+    </div>
+    <!-- 오버레이 -->
+    <div class="overlay">
+      <div class="track">
+        <span>테스트용문구입니다 계속해서흘러가도록</span>
+        <span>테스트용문구입니다 계속해서흘러가도록</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

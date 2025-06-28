@@ -1,0 +1,63 @@
+/* archive.css */
+body {
+    margin: 0;
+    padding: 0;
+    background: #F7F7F7;
+  }
+  .Thumbnail {
+    width: 1600px;
+    height: 960px;
+    position: relative;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+  .Marquee {
+    position: absolute;
+    width: 1600px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+  }
+  /* 위치 지정 */
+  .marquee1 { left: -125px; top: 350px; }
+  .marquee2 { left: -253px; top: 622px; }
+  .marquee3 { left: -27px; top: 73px; }
+  .marquee4 { left: 0; top: 534px; }
+  .marquee5 { left: 196px; top: -194px; }
+  
+  /* 텍스트 컨테이너 */
+  .TextContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 48px;
+    padding: 48px 0;
+  }
+  .TextContainer > div {
+    font-size: 364px;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    color: white;
+  }
+  /* 검정 텍스트 */
+  .TextContainer.black > div {
+    color: black;
+  }
+  /* 배경 검정 + 작은 텍스트 */
+  .TextContainer.bgBlack {
+    background: black;
+    padding: 48px;
+  }
+  .TextContainer.bgBlack > div {
+    font-size: 90px;
+    font-family: 'K League Dynamic', sans-serif;
+    color: white;
+  }
+  /* 투명 처리된 요소 */
+  .Text4,
+  .Text3 {
+    opacity: 0;
+  }
